@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Skateboard Obby Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="backdrop"></div>
+  <main class="app-shell">
+    <section class="hero">
+      <p class="eyebrow">Checkpoint Challenge</p>
+      <h1>California Skateboard Obby Quiz</h1>
+      <p class="hero-copy">
+        Ride through checkpoint flags, answer California questions, and turn every red flag green to finish the obby.
+      </p>
+    </section>
+
+    <section class="obby-scene" aria-hidden="true">
+      <div class="scene-banner">Skateboard Obby Style Run</div>
+      <div class="sky-glow"></div>
+      <div class="track">
+        <div class="lane lane-left"></div>
+        <div class="lane lane-right"></div>
+        <div class="skater">
+          <div class="skater-tag">You</div>
+          <div class="skater-head"></div>
+          <div class="skater-body"></div>
+          <div class="board"></div>
+        </div>
+        <div class="checkpoint-strip" id="checkpointStrip"></div>
+      </div>
+    </section>
+
+    <section class="hud">
+      <div class="stat-card">
+        <span class="stat-label">Score</span>
+        <strong id="score">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Checkpoint</span>
+        <strong id="round">1 / 12</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Category</span>
+        <strong id="category">History</strong>
+      </div>
+      <button id="restartTopButton" class="stat-card hud-button" type="button">
+        <span class="stat-label">Control</span>
+        <strong>Restart Run</strong>
+      </button>
+    </section>
+
+    <section id="studyPanel" class="study-panel">
+      <div class="study-panel-top">
+        <div>
+          <p class="eyebrow">Study Mode</p>
+          <h2>Review Every Checkpoint Before You Ride</h2>
+        </div>
+        <button id="startRunButton" class="primary-button" type="button">Start The Quiz Run</button>
+      </div>
+      <div id="studyGrid" class="study-grid"></div>
+    </section>
+
+    <section class="arena-card">
+      <div class="arena-topline">
+        <span id="difficultyBadge" class="badge">Starter Ramp</span>
+        <button id="flipButton" class="ghost-button" type="button">Reveal Hint</button>
+      </div>
+
+      <div class="flashcard" id="flashcard">
+        <div class="card-face card-front">
+          <p class="card-kicker">Checkpoint Question</p>
+          <h2 id="question">Loading question...</h2>
+          <p id="hint" class="hint"></p>
+        </div>
+        <div class="card-face card-back">
+          <p class="card-kicker">Checkpoint Tip</p>
+          <p id="lesson"></p>
+        </div>
+      </div>
+
+      <div id="answers" class="answers" aria-live="polite"></div>
+
+      <section id="feedbackPanel" class="feedback-panel hidden" aria-live="polite">
+        <p id="feedbackTitle" class="feedback-title"></p>
+        <p id="feedbackText" class="feedback-text"></p>
+        <button id="nextButton" class="primary-button" type="button">Roll To Next Checkpoint</button>
+      </section>
+
+      <section id="obstaclePanel" class="obstacle-panel hidden" aria-live="polite">
+        <div class="obstacle-topline">
+          <div>
+            <p class="card-kicker">Obstacle Course</p>
+            <h3 id="obstacleTitle">Checkpoint Run</h3>
+          </div>
+          <p id="obstacleStatus" class="obstacle-status">Reach the end without getting knocked off.</p>
+        </div>
+        <div class="control-row">
+          <span>`Left`/`Right`/`Up`/`Down` move</span>
+          <span>Red bars reset you</span>
+          <span>Wrecking balls knock you off</span>
+        </div>
+        <div id="courseViewport" class="course-viewport">
+          <div id="courseLane" class="course-lane">
+            <div id="courseObjects" class="course-objects"></div>
+            <div id="player" class="course-player"></div>
+          </div>
+          <div id="courseFinish" class="course-finish">Finish</div>
+        </div>
+      </section>
+    </section>
+
+    <section class="guide-row">
+      <article class="guide-card">
+        <h3>How It Works</h3>
+        <p>Each flag is a checkpoint. Answer correctly to clear it and turn that flag green so you can keep riding.</p>
+      </article>
+      <article class="guide-card">
+        <h3>California Topics</h3>
+        <p>The run mixes politics, history, and geography so every checkpoint feels like part of one state-themed obstacle course.</p>
+      </article>
+    </section>
+  </main>
+
+  <template id="resultTemplate">
+    <section class="result-screen">
+      <p class="eyebrow">Run Complete</p>
+      <h2 id="resultHeading"></h2>
+      <p id="resultSummary"></p>
+      <div class="result-stats">
+        <div>
+          <span>Final Score</span>
+          <strong id="finalScore"></strong>
+        </div>
+        <div>
+          <span>Cleared Flags</span>
+          <strong id="accuracy"></strong>
+        </div>
+        <div>
+          <span>Perfect Answers</span>
+          <strong id="bestStreak"></strong>
+        </div>
+      </div>
+      <button id="restartButton" class="primary-button" type="button">Play Again</button>
+    </section>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
